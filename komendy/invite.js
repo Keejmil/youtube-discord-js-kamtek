@@ -1,7 +1,7 @@
 module.exports = {
     name: 'invite',
     description: 'zaproś bota na własny serwer!',
-    execute(message, args, Discord) {
+    execute(message, args, Discord, client) {
         let newEmbed = new Discord.MessageEmbed()
 
         .setColor('#FF0000')

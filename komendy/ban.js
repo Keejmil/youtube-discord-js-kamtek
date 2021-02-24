@@ -1,7 +1,7 @@
 module.exports = {
     name: 'ban',
     description: 'banuje osoby',
-    execute(message, args) {
+    execute(message, args, Discord, client) {
         let member = message.mentions.users.first();
         if(member){
             let memberTarget = message.guild.members.cache.get(member.id);

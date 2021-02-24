@@ -1,7 +1,7 @@
 module.exports = {
     name: 'clear',
     description: 'wyczyśc kanał!',
-    async execute(message, args) {
+    async execute(message, args, Discord, client) {
         if (!args[0]) return message.reply("Podaj ilość wiadomości, które chcesz usunąć!");
 
         if(isNaN(args[0])) return message.reply("Podaj numer, nie wyraz!");

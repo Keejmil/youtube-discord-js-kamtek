@@ -1,7 +1,7 @@
 module.exports = {
     name: 'ankieta',
     description: 'zrób ankietę!',
-    async execute(message, args, Discord) {
+    async execute(message, args, Discord, client) {
         let Arguments = args.join(' ');
 
         let newEmbed = new Discord.MessageEmbed()
