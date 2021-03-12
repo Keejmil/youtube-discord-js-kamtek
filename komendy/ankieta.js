@@ -1,5 +1,6 @@
 module.exports = {
     name: 'ankieta',
+    aliases: ['poll', 'stworzankiete'],
     description: 'zrób ankietę!',
     async execute(message, args, Discord, client) {
         let Arguments = args.join(' ');

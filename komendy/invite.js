@@ -1,5 +1,6 @@
 module.exports = {
     name: 'invite',
+    aliases: ['zapros'],
     description: 'zaproś bota na własny serwer!',
     execute(message, args, Discord, client) {
         let newEmbed = new Discord.MessageEmbed()

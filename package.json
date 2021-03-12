@@ -4,6 +4,7 @@
   "description": "bot na Discorda",
   "main": "main.js",
   "scripts": {
+    "start": "node main.js",
     "dev:watch": "nodemon main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -14,6 +15,8 @@
     "discord.js": "^12.5.1",
     "dotenv": "^8.2.0",
     "fs": "^0.0.1-security",
+    "mongoose": "^5.11.19",
+    "node-fetch": "^2.6.1",
     "nodemon": "^2.0.7"
   }
 }
