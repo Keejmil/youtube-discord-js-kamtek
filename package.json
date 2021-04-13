@@ -9,7 +9,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Keejmil#8882",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "chalk": "^4.1.0",
     "discord.js": "^12.5.1",
