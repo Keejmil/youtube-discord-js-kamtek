@@ -1,24 +1,28 @@
-module.exports = (Discord, client, message) =>{
-    const { prefix } = require('../../config');
+const { prefix: defaultPrefix } = require("../../config");
+const prefixSchema = require("../../models/prefixSchema");
 
-    if(!message.content.startsWith(prefix) || message.author.bot) return;
+module.exports = async (Discord, client, message) => {
+  let prefix;
+  let dbPrefix = await prefixSchema.findOne({ guildID: message.guild.id });
 
-    const args = message.content.slice(prefix.length).split(/ +/);
-    const cmd = args.shift().toLowerCase();
+  if (dbPrefix) {
+    prefix = dbPrefix.prefix;
+  } else {
+    prefix = defaultPrefix;
+  }
+  if (!message.content.startsWith(prefix) || message.author.bot) return;
 
-    const command = client.commands.get(cmd) || client.commands.find(a => a.aliases && a.aliases.includes(cmd));
+  const args = message.content.slice(prefix.length).split(/ +/);
+  const cmd = args.shift().toLowerCase();
 
-    if(command.permissions) {
-        const authorPerms = message.channel.permissionsFor(message.author);
-        if(!authorPerms || !authorPerms.has(command.permissions)) {
-            return message.reply(`Nie możesz użyć tej komendy, ponieważ nie masz potrzebnych do niej permisji.`);
-        }
-    }
+  const command =
+    client.commands.get(cmd) ||
+    client.commands.find((a) => a.aliases && a.aliases.includes(cmd));
 
-    try {
-        if(command) command.execute(message, args, Discord, client);
-    } catch (err) {
-        message.channel.send("Wystąpił błąd");
-        console.log(err);
-    }
-}
+  try {
+    if (command) command.execute(message, args, Discord, client);
+  } catch (err) {
+    message.channel.send("Wystąpił błąd");
+    console.log(err);
+  }
+};
