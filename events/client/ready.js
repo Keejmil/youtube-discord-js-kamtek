@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 module.exports = (client) => {
   console.log("Bot jest online!");
 
-  mongoose.connect('mongodb+srv://keejmil:PRzAfLomn42dsl43@discordbotcluster.kyvun.mongodb.net/DiscordBotDB?retryWrites=true&w=majority', {
+  mongoose.connect('url', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false
