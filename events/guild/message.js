@@ -1,6 +1,8 @@
 const { prefix: defaultPrefix } = require("../../config");
 const prefixSchema = require("../../models/prefixSchema");
 
+const gbanSchema = require('../../models/gbanSchema');
+
 module.exports = async (Discord, client, message) => {
   let prefix;
   let dbPrefix = await prefixSchema.findOne({ guildID: message.guild.id });
@@ -11,6 +13,14 @@ module.exports = async (Discord, client, message) => {
     prefix = defaultPrefix;
   }
   if (!message.content.startsWith(prefix) || message.author.bot) return;
+
+  // Gban check;
+  const userID = message.author.id;
+  const gbanResults = await gbanSchema.findOne({ userID })
+  if(gbanResults) {
+    message.channel.send(`Jesteś globalnie zbanowany!\n\nPowod: ${gbanResults.reason}\nModerator: ${gbanResults.moderatorID}`)
+    return;
+  }
 
   const args = message.content.slice(prefix.length).split(/ +/);
   const cmd = args.shift().toLowerCase();
